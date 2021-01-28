@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "New Jekyll Post!"
-date:   2021-01-28 17:14:07 +0700
+date:   2021-01-29 17:14:07 +0700
 categories: jekyll update
 ---
 
