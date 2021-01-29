@@ -1,0 +1,10 @@
+---
+layout: post
+title:  "Hello world 123"
+date:   2021-01-18 19:14:07 +0700
+categories: jekyll
+---
+
+<h1>{{ "Hello World!" | capitalize }}</h1>
+
+{{ page.categories }}
