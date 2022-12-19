@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title:  "Test 3"
 date:   2022-12-19 05:14:07 +0700
 categories: jekyll

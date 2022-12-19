@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: default
 title:  "New Jekyll Post 00000!"
 date:   2021-01-27 17:14:07 +0700
 ---
