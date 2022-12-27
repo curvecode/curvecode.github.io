@@ -13,18 +13,25 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: Blog
-email: curvecode@gmail.com
+title: Curvecode
+author:
+  name: curvercode
+  emai: curvecode@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  The place to share my life with the world.
+  Hope everyone can find something that have meaning from me!
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: thanhlt90
-github_username:  curvecode
 
-# Build settings
-markdown: kramdown
-remote_theme: pages-themes/architect@v0.2.0
+theme: minima
+
+minima:
+  date_format: "%b %-d, %Y"
+  # generate social links in footer
+
+  social_links:
+    - { platform: github,         user_url: "https://github.com/jekyll/minima" }
+    - { platform: youtube,        user_url: "https://www.youtube.com/jekyll" }
+
 plugins:
   - jekyll-feed
   - jekyll-remote-theme

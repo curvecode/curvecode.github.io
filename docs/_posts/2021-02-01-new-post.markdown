@@ -1,7 +1,0 @@
----
-layout: default
-title:  "New post on Feb"
-date:   2021-02-01 17:14:07 +0700
----
-
-This is new post
