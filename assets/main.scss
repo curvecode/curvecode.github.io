@@ -1,0 +1,15 @@
+@use "sass:color";
+
+// Compatibility wrapper: some themes (older minima versions) call
+// the deprecated `lighten($color, $amount)` function. Provide a
+// replacement that delegates to the current API so builds don't show
+// deprecation warnings.
+@function lighten($color, $amount) {
+  // `color.scale` accepts percentage values for $lightness.
+  // Pass through the received amount directly so calls like
+  // `lighten($c, 6%)` continue to work.
+  @return color.scale($color, $lightness: $amount);
+}
+
+// Import the minima SCSS after defining the compatibility function.
+@import "minima";

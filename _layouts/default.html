@@ -16,12 +16,13 @@
         <nav class="site-nav">
           <a href="{{ '/' | relative_url }}">Home</a>
           <a href="{{ '/about/' | relative_url }}">About</a>
-          <button id="theme-toggle" aria-label="Toggle theme">🌓</button>
+          <button id="theme-toggle" type="button" aria-label="Toggle theme">🌓</button>
+          <span id="theme-status" class="theme-status" aria-hidden="true"></span>
         </nav>
       </div>
     </header>
 
-    <main class="container">{{ content }}</main>
+    <main id="page-main" class="container page-fade-enter">{{ content }}</main>
 
     <footer class="site-footer">
       <div class="container">&copy; {{ site.time | date: '%Y' }} {{ site.title }}</div>

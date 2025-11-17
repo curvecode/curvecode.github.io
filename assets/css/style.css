@@ -1,32 +1,99 @@
 :root{
-  --bg: #ffffff;
-  --text: #0f1724;
-  --muted: #6b7280;
-  --accent: #0ea5a4;
+  /* Wabi-sabi light theme: warm, muted, natural tones */
+  --bg: #F6F2EA;          /* warm paper */
+  --text: #2B2A28;        /* warm charcoal */
+  --muted: #7A776E;       /* soft gray-brown */
+  --accent: #8A6A3A;      /* aged bronze / ochre */
+  --card-bg: #FBF8F3;     /* slightly warmer card */
+  --header-bg: rgba(138,106,58,0.03);
+  --footer-bg: rgba(138,106,58,0.02);
+  --border: rgba(43,42,40,0.06);
+  --link: var(--accent);
+  --button-bg: rgba(138,106,58,0.06);
+  --button-text: var(--accent);
 }
 
-[data-theme='dark']{
-  --bg: #0b1220;
-  --text: #e6eef6;
-  --muted: #94a3b8;
-  --accent: #7dd3fc;
+html[data-theme='dark']{
+  /* Wabi-sabi dark theme: deep muted tones with warm highlights */
+  --bg: #07161a;          /* deep muted teal/charcoal */
+  --text: #E6DEC9;        /* warm parchment */
+  --muted: #9EA79E;       /* soft desaturated green */
+  --accent: #C08A39;      /* aged gold / amber */
+  --card-bg: #0B1A16;     /* dark card background */
+  --header-bg: rgba(192,138,57,0.03);
+  --footer-bg: rgba(192,138,57,0.02);
+  --border: rgba(230,222,201,0.04);
+  --link: var(--accent);
+  --button-bg: rgba(192,138,57,0.06);
+  --button-text: var(--accent);
 }
 
 *{box-sizing:border-box}
-body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;line-height:1.5}
+.reduced-motion * { transition: none !important; }
+body{background:var(--bg);color:var(--text);font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;margin:0;line-height:1.5;transition:background-color 300ms ease,color 300ms ease}
+.page-fade-enter{opacity:0}
+.page-fade-enter-active{opacity:1;transition:opacity 300ms ease}
 .container{max-width:900px;margin:0 auto;padding:1.25rem}
-.site-header{border-bottom:1px solid rgba(0,0,0,0.06);}
+.site-header{background:var(--header-bg);border-bottom:1px solid var(--border);backdrop-filter: blur(4px)}
+/* gentle gradient accent */
+.site-header::after{content:'';display:block;height:6px;background:linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.04) 50%, rgba(0,0,0,0) 100%);opacity:0.06}
 .site-title{margin:0;font-size:1.25rem}
 .site-title a{color:var(--text);text-decoration:none}
 .site-nav{display:flex;gap:1rem;align-items:center}
 .site-nav a{color:var(--muted);text-decoration:none}
-#theme-toggle{background:transparent;border:1px solid var(--muted);padding:0.25rem 0.5rem;border-radius:6px;color:var(--muted);cursor:pointer}
+#theme-toggle{background:var(--button-bg);border:1px solid var(--button-text);padding:0.25rem 0.5rem;border-radius:6px;color:var(--button-text);cursor:pointer}
+.site-nav a:hover{color:var(--link);text-decoration:underline}
+#theme-toggle{background:var(--button-bg);border:1px solid var(--button-text);padding:0.25rem 0.5rem;border-radius:6px;color:var(--button-text);cursor:pointer}
+
+/* footer */
+.site-footer{background:var(--footer-bg);border-top:1px solid var(--border);padding:0.75rem 0;margin-top:2rem}
+.site-footer::before{content:'';display:block;height:6px;background:linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.04) 50%, rgba(0,0,0,0) 100%);opacity:0.04}
+
+/* utility card for CV entries and post excerpts */
+.card{background:var(--card-bg);border:1px solid var(--border);padding:1rem;border-radius:8px;box-shadow: 0 6px 18px rgba(11,12,13,0.04)}
+
+.theme-status{font-size:0.9rem;color:var(--muted);padding-left:0.5rem}
 
 h1,h2,h3{color:var(--text)}
 
 /* simple post styles */
 .post-meta{color:var(--muted);font-size:0.9rem;margin-bottom:1rem}
 
-@media (prefers-color-scheme: dark){
+/* @media (prefers-color-scheme: dark){
   :root{--bg:#0b1220;--text:#e6eef6;--muted:#94a3b8}
+} */
+
+@media (prefers-reduced-motion: reduce){
+  .page-fade-enter-active, body{transition: none}
 }
+
+/* Stronger overrides to ensure theme variables take effect when toggling. */
+/* These are intentionally specific and use !important only where necessary. */
+html[data-theme='dark'] body,
+html[data-theme='light'] body {
+  background: var(--bg) !important;
+  color: var(--text) !important;
+}
+
+html[data-theme='dark'] a,
+html[data-theme='light'] a {
+  color: var(--link) !important;
+}
+
+html[data-theme='dark'] .site-title a,
+html[data-theme='light'] .site-title a,
+html[data-theme='dark'] .site-nav a,
+html[data-theme='light'] .site-nav a {
+  color: var(--text) !important;
+}
+
+html[data-theme='dark'] .site-header,
+html[data-theme='light'] .site-header,
+html[data-theme='dark'] .site-footer,
+html[data-theme='light'] .site-footer,
+html[data-theme='dark'] .card,
+html[data-theme='light'] .card {
+  background: var(--card-bg) !important;
+  border-color: var(--border) !important;
+}
+
