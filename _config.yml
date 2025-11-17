@@ -1,0 +1,25 @@
+title: CurveCode
+email: your-email@example.com
+description: >
+  Personal blog and online CV for CurveCode.
+baseurl: ""
+url: "https://curvecode.github.io"
+theme: minima
+markdown: kramdown
+plugins:
+  - jekyll-feed
+
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: post
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+
+sass:
+  style: compressed

@@ -1,0 +1,45 @@
+name: GitHub Pages - Jekyll Build & Deploy
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle config set --local path 'vendor/bundle'
+          bundle install
+
+      - name: Build the site
+        run: bundle exec jekyll build --destination public
+
+      - name: Deploy to GitHub Pages
+        uses: actions/github-script@v6
+        id: pick_branch
+        with:
+          script: |
+            const branch = process.env.PAGES_BRANCH || 'gh-pages'
+            core.setOutput('branch', branch)
+        env:
+          PAGES_BRANCH: ${{ secrets.PAGES_BRANCH }}
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./public
+          publish_branch: ${{ steps.pick_branch.outputs.branch }}
